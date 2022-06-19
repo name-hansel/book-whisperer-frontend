@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/static/js/main.f32c076a.js",
-    "index.html": "/index.html",
-    "main.f32c076a.js.map": "/static/js/main.f32c076a.js.map"
+    "main.js": "/book-whisperer-frontend/static/js/main.f32c076a.js",
+    "index.html": "/book-whisperer-frontend/index.html",
+    "main.f32c076a.js.map": "/book-whisperer-frontend/static/js/main.f32c076a.js.map"
   },
   "entrypoints": [
     "static/js/main.f32c076a.js"
