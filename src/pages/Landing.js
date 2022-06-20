@@ -1,7 +1,8 @@
 import axios from 'axios';
-import React from 'react'
-import debounce from 'lodash.debounce'
-import "../Landing.css"
+import React from 'react';
+import debounce from 'lodash.debounce';
+import "../css/Landing.css";
+import SearchResultItem from '../components/SearchResultItem';
 
 const Landing = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -22,6 +23,11 @@ const Landing = () => {
   }, [searchResults])
 
   React.useEffect(() => {
+    if (!searchQuery.length) {
+      setSearchResults([]);
+      setLoading(false);
+      return;
+    }
     setLoading(true);
     debounceSearch(searchQuery);
   }, [searchQuery]);
@@ -34,9 +40,9 @@ const Landing = () => {
           <input id="search" type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search for a book, author, etc." />
         </form>
       </div>
-      <div>
+      <div className="search-result-container">
         {
-          loading ? <h1>Loading....</h1> : searchResults.length > 0 ? searchResults.map((result) => <h1>{result.title}</h1>) : searchQuery.length > 0 ? <h5>{"No results found :("}</h5> : null
+          loading ? <h1 className='message-text'>Loading....</h1> : searchResults.length > 0 ? searchResults.map((result) => <SearchResultItem result={result} />) : searchQuery.length > 0 ? <h5 className='message-text'>{"No results found :("}</h5> : null
         }
       </div>
     </div>
