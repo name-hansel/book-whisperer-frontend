@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react'
+import debounce from 'lodash.debounce'
 import "../Landing.css"
 
 const Landing = () => {
@@ -7,14 +8,14 @@ const Landing = () => {
   const [searchResults, setSearchResults] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
 
-  const getResults = async () => {
+  const debounceSearch = React.useCallback(debounce(async (query) => {
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/search?query=${searchQuery}`);
+      const { data } = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/search?query=${query}`);
       setSearchResults(data);
     } catch (err) {
       console.error(err);
     }
-  }
+  }, 250), []);
 
   React.useEffect(() => {
     setLoading(false);
@@ -22,7 +23,7 @@ const Landing = () => {
 
   React.useEffect(() => {
     setLoading(true);
-    getResults();
+    debounceSearch(searchQuery);
   }, [searchQuery]);
 
   return (
