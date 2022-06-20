@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import debounce from 'lodash.debounce';
-import "../css/Landing.css";
+
 import SearchResultItem from '../components/SearchResultItem';
 
 const Landing = () => {
@@ -9,13 +9,17 @@ const Landing = () => {
   const [searchResults, setSearchResults] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
 
-  const debounceSearch = React.useCallback(debounce(async (query) => {
+  const getResults = async (query) => {
     try {
       const { data } = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/search?query=${query}`);
       setSearchResults(data);
     } catch (err) {
       console.error(err);
     }
+  }
+
+  const debounceSearch = React.useCallback(debounce(async (query) => {
+    await getResults(query);
   }, 250), []);
 
   React.useEffect(() => {
@@ -33,19 +37,20 @@ const Landing = () => {
   }, [searchQuery]);
 
   return (
-    <div className='body'>
-      <h1 className="title">Book Whisperer</h1>
+    <>
       <div>
-        <form>
+        <form onSubmit={(e) => {
+          e.preventDefault();
+        }}>
           <input id="search" type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search for a book, author, etc." />
         </form>
       </div>
       <div className="search-result-container">
         {
-          loading ? <h1 className='message-text'>Loading....</h1> : searchResults.length > 0 ? searchResults.map((result) => <SearchResultItem result={result} />) : searchQuery.length > 0 ? <h5 className='message-text'>{"No results found :("}</h5> : null
+          loading ? <h1 className='message-text'>Loading....</h1> : searchResults.length > 0 ? searchResults.map((result) => <SearchResultItem key={result.title} result={result} />) : searchQuery.length > 0 ? <h5 className='message-text'>{"No results found :("}</h5> : null
         }
       </div>
-    </div>
+    </>
   )
 }
 
