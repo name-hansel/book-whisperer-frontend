@@ -20,7 +20,7 @@ const Landing = () => {
 
   const debounceSearch = React.useCallback(debounce(async (query) => {
     await getResults(query);
-  }, 250), []);
+  }, 100), []);
 
   React.useEffect(() => {
     setLoading(false);
