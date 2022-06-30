@@ -24,7 +24,7 @@ const Landing = () => {
   // Debounce API call (getResults)
   const debounceSearch = React.useCallback(debounce(async (query) => {
     await getResults(query);
-  }, 100), []);
+  }, 250), []);
 
   // Check url to see if query already exists
   React.useEffect(() => {

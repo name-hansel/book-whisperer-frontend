@@ -7,7 +7,8 @@ import Book from "./pages/Book";
 import Landing from "./pages/Landing";
 
 import "./css/Landing.css";
-import "./css/SearchResultItem.css"
+import "./css/SearchResultItem.css";
+import "./css/Book.css";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
       <h1 className="title">Book Whisperer</h1>
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="book/:bookTitle" element={<Book />} />
+        <Route path="book/:bookGoodreadsURLPart" element={<Book />} />
       </Routes>
     </div>
   );

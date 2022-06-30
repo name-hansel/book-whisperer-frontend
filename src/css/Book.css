@@ -1,0 +1,25 @@
+#book-div {
+  border: 1px solid black;
+  margin: 1em;
+  padding: 1em;
+  width: 50vw;
+  border-radius: 4px;
+}
+
+#go-back-btn {
+  border: 1px solid black;
+  padding: 1em;
+  border-radius: 4px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .body {
+    width: 100vw;
+  }
+
+  #book-div {
+    width: 75vw;
+  }
+}
