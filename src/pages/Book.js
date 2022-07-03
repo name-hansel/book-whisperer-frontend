@@ -2,9 +2,14 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
+import BookData from "../components/BookData";
+import BookSynopsis from "../components/BookSynopsis";
+import BookPrices from "../components/BookPrices";
+
 const Book = () => {
   const [goodreadsData, setGoodreadsData] = React.useState({});
   const [loading, setLoading] = React.useState(true);
+  const [currentTab, setCurrentTab] = React.useState(0);
 
   const navigate = useNavigate();
 
@@ -32,20 +37,18 @@ const Book = () => {
 
   return (
     <div id="book-div">
-      <button id="go-back-btn" onClick={() => navigate(-1)}>&#8249; Go back</button>
-      {
-        loading ? <h1>Loading...</h1> : <>
-          <div id="book-info-container">
-            <img id="book-cover" src={goodreadsData.imageSource} alt={`Book cover of ${goodreadsData.title}`} />
-            <div id="book-info">
-              <h1 id="book-title">{goodreadsData.title}</h1>
-              <h1 id="book-subtitle">{goodreadsData.subtitle}</h1>
-              <h1 id="book-authors">by {goodreadsData.author.join(", ")}</h1>
-              <h1 id="book-rating">Rating: {goodreadsData.rating}/5</h1>
-              <h1 class="book-number">{`(${goodreadsData.numberOfRatings} ratings, ${goodreadsData.numberOfReviews} reviews)`}</h1>
-            </div>
+      <div id="buttons-div">
+        <button id="go-back-btn" onClick={() => navigate(-1)}>&#8249; Go back</button>
+        {
+          loading ? null : <div id="tabs-container">
+            <button className={`tab ${currentTab === 0 ? 'active-tab' : null}`} onClick={() => setCurrentTab(0)}>Details</button>
+            <button className={`tab ${currentTab === 1 ? 'active-tab' : null}`} onClick={() => setCurrentTab(1)} >Synopsis</button>
+            <button className={`tab ${currentTab === 2 ? 'active-tab' : null}`} onClick={() => setCurrentTab(2)} >Prices</button>
           </div>
-        </>
+        }
+      </div>
+      {
+        loading ? <h1>Loading...</h1> : currentTab === 0 ? <BookData goodreadsData={goodreadsData} /> : currentTab === 1 ? <BookSynopsis goodreadsData={goodreadsData} /> : <BookPrices />
       }
     </div>
   )
