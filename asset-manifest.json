@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/book-whisperer-frontend/static/css/main.63b548ab.css",
-    "main.js": "/book-whisperer-frontend/static/js/main.16a2d4ee.js",
+    "main.css": "/book-whisperer-frontend/static/css/main.c929102e.css",
+    "main.js": "/book-whisperer-frontend/static/js/main.22176f03.js",
     "index.html": "/book-whisperer-frontend/index.html",
-    "main.63b548ab.css.map": "/book-whisperer-frontend/static/css/main.63b548ab.css.map",
-    "main.16a2d4ee.js.map": "/book-whisperer-frontend/static/js/main.16a2d4ee.js.map"
+    "main.c929102e.css.map": "/book-whisperer-frontend/static/css/main.c929102e.css.map",
+    "main.22176f03.js.map": "/book-whisperer-frontend/static/js/main.22176f03.js.map"
   },
   "entrypoints": [
-    "static/css/main.63b548ab.css",
-    "static/js/main.16a2d4ee.js"
+    "static/css/main.c929102e.css",
+    "static/js/main.22176f03.js"
   ]
 }
