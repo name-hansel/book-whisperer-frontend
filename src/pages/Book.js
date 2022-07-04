@@ -42,7 +42,9 @@ const Book = () => {
         {
           loading ? null : <div id="tabs-container">
             <button className={`tab ${currentTab === 0 ? 'active-tab' : null}`} onClick={() => setCurrentTab(0)}>Details</button>
-            <button className={`tab ${currentTab === 1 ? 'active-tab' : null}`} onClick={() => setCurrentTab(1)} >Synopsis</button>
+            {
+              goodreadsData.synopsis && <button className={`tab ${currentTab === 1 ? 'active-tab' : null}`} onClick={() => setCurrentTab(1)} >Synopsis</button>
+            }
             <button className={`tab ${currentTab === 2 ? 'active-tab' : null}`} onClick={() => setCurrentTab(2)} >Prices</button>
           </div>
         }
